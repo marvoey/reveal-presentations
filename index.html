@@ -4,10 +4,10 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js – The HTML Presentation Framework</title>
+		<title>Starting a Drupal Site Right - with Composer</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="Learn the basics of Composer with Drupal 8">
+		<meta name="author" content="Marvin Oey">
 
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -15,7 +15,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+		<link rel="stylesheet" href="css/theme/custom.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -41,14 +42,169 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>The HTML Presentation Framework</h3>
+					<h1>Composer</h1>
+					<h3>Starting a Drupal 8 Site Right</h3>
 					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> and <a href="https://github.com/hakimel/reveal.js/graphs/contributors">contributors</a></small>
+						<small>Presented by <a href="https://www.linkedin.com/in/marvin-oey-ph-d-p-e-b7a5223/">Marvin Oey</a></small>
 					</p>
-					<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CKYI553M&placement=revealjscom" id="_carbonads_js"></script>
 				</section>
 
+				<section data-transition="slide" data-background="#30ACE1" data-background-transition="zoom">
+					<h2>What is Composer?</h2>
+					<p class="fragment fade-left">
+						Composer is a <span class="fragment highlight-bold">dependency management tool</span> for PHP.
+					</p>
+					<blockquote class="fragment fade-up">
+						It allows you to install, update, and load the PHP libraries that your PHP application
+						depends on.
+					</blockquote>
+				</section>
+
+				<section data-transition="slide" data-background="#44B7E4" data-background-transition="zoom">
+					<h2>What does that mean?</h2>
+					<p class="align-left fragment fade-down">
+						Say you have a <b>Drupal 7</b> application.
+					</p>
+					<p class="fragment fade align-left">... That requires jCarousel.</p>
+					<p class="fragment fade align-left">which is a third party, external dependency.</p>
+					<p class="fragment fade-up align-left">You download the tarball, decompress, move it into place. Voila!</p>
+				</section>
+
+				<section data-transition="slide" data-background="#30ACE1" data-background-transition="zoom">
+					<h2>Easy right?</h2>
+					<h2 class="fragment fade">Except when it isn't.</h2>
+				</section>
+
+				<section data-transition="slide" data-background="#44B7E4" data-background-transition="zoom">
+					<h2 class="align-left">Versions matter</h2>
+					<p class="fragment align-left">Your hypothetical <b>Drupal 7</b> site requires:</p>
+					<ul>
+						<li class="fragment">Drupal Core, which requires <b>jQuery 1.2.0</b></li>
+						<li class="fragment">jCarousel, which requires <b>jQuery 1.3.0</b></li>
+					</ul>
+					<h3 class="fragment fade-right">1.2.0 != 1.3.0</h3>
+				</section>
+
+				<section data-transition="slide" data-background="#44B7E4" data-background-transition="zoom">
+					<h2 class="align-left">What do you do?</h2>
+					<p class="fragment align-left">In <b>Drupal 7</b> you would use:</p>
+					<ul>
+						<li class="fragment">Various contributed modules</li>
+						<li class="fragment">Hacky workarounds to load multiple versions of jQuery.</li>
+					</ul>
+					<p class="fragment fade-left align-left">That worked for dealing with a single library incompatibility.</p>
+				</section>
+
+				<section data-transition="slide" data-background="#44B7E4" data-background-transition="zoom">
+					<h2 class="align-left">Enter Drupal 8</h2>
+					<p class="fragment align-left">...which uses lot of external dependencies</p>
+					<ul>
+						<li class="fragment">Symfony</li>
+						<li class="fragment">Doctrine</li>
+						<li class="fragment">Twig</li>
+						<li class="fragment">Guzzle</li>
+					</ul>
+					<p class="fragment fade-left align-left">...and a whole lot more!</p>
+				</section>
+
+				<section data-transition="slide" data-background="#44B7E4" data-background-transition="zoom">
+					<h2 class="align-left">This is good.</h2>
+					<ul>
+						<li class="fragment">Drupal is no longer on an island.</li>
+						<li class="fragment">Drupal is using software that is <b>Proudly Found Elsewhere</b> (and tested / supported elsewhere)</li>
+						<li class="fragment">No more <b>reinventing</b> the wheel!</li>
+					</ul>
+				</section>
+
+				<section data-transition="slide" data-background="#44B7E4" data-background-transition="zoom">
+					<h2>But it gets complicated pretty fast.</h2>
+				</section>
+
+				<section>
+					<h4 class="align-left">Drupal core requires</h4>
+					<ul>
+						<li>Symfony components</li>
+						<li>And dozens of other things</li>
+						<li>Which in turn require more things</li>
+					</ul>
+					<h4 class="align-left">Drush requires</h4>
+					<ul>
+						<li>Symfony Yaml</li>
+						<li>And dozens of other things</li>
+						<li>Which in turn require more things</li>
+					</ul>
+				</section>
+
+				<section>
+					<ul>
+						<li>CSV Serialization module, which requires League CSV</li>
+						<li>Views Slideshow module, which requires ...</li>
+						<ul>
+							<li>jQuery Cycle, which requires jQuery</li>
+						</ul>
+						<li>Bootstrap theme, which requires jQuery.</li>
+						<li>Guzzle (for a custom module), which requires PSR HTTP message.</li>
+					</ul>
+					<p class="align-left fragment">...and the list goes on.</p>
+				</section>
+
+				<section>
+					<h2 class="align-left">So how does it work?</h2>
+					<p class="align-left">Dependency management is a fundamental part of software development</p>
+					<ul>
+						<li>Javascript:</li>
+						<ul class="fragment">
+							<li>npm</li>
+							<li>Yarn</li>
+							<li>Bower</li>
+						</ul>
+						<li>Ruby</li>
+						<ul class="fragment">
+							<li>Bundler</li>
+						</ul>
+						<li>PHP</li>
+						<ul class="fragment">
+							<li>Composer</li>
+						</ul>
+					</ul>
+				</section>
+
+				<section>
+					<section>
+						<h2>Install Composer</h2>
+						<p>If you’re a Homebrew user on macOS, you can use</p>
+						<pre><code class="console" data-trim contenteditable>
+								brew install composer</code></pre>
+						<p>If you’re on Windows, you can use the Windows installer. Otherwise, execute the following on your command line:</p>
+
+						<pre><code class="php" data-trim contenteditable>
+							php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+							php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+							php composer-setup.php
+							php -r "unlink('composer-setup.php');"
+							chmod 755 composer.phar
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Take Composer for a test drive without Drupal</h2>
+						<p>Create a new project</p>
+						<pre><code class="console" data-trim contenteditable>
+							mkdir my-new-project
+							cd my-new-project
+							touch index.php</code></pre>
+					</section>
+				</section>
+
+				<section style="text-align: left;">
+					<h1>THE END</h1>
+					<p>
+						- <a href="https://slides.com">Try the online editor</a> <br>
+						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
+					</p>
+				</section>
+				
+				<!-- Begin the included slides -->
 				<section>
 					<h2>Hello There</h2>
 					<p>
@@ -406,123 +562,5 @@ Reveal.addEventListener( 'customevent', function() {
 			});
 
 		</script>
-
-		<!-- Everything below this point is only used for the reveal.js demo page -->
-
-		<a class="fork-reveal" style="display: none;" href="https://github.com/hakimel/reveal.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork reveal.js on GitHub"></a>
-
-		<div class="share-reveal" style="display: none; position: absolute; bottom: 16px; left: 50%; margin-left: -139px; z-index: 20;">
-			<a class="share-reveal-editor" href="https://slides.com">Try the online editor</a>
-
-			<a class="share-reveal-facebook" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Frevealjs.com">
-				<svg viewBox="-8 -8 48 48" width="20" height="20" version="1.1" xmlns="http://www.w3.org/2000/svg">
-					<path fill="#FFFFFF" d="M25.613-4.557c0,0-3.707,0-6.166,0c-3.662,0-7.732,1.535-7.732,6.835c0.019,1.845,0,3.613,0,5.603H7.481 v6.728h4.366v19.37h8.021V14.48h5.295l0.479-6.618h-5.913c0,0,0.016-2.946,0-3.8c0-2.093,2.184-1.974,2.312-1.974 c1.042,0,3.059,0.003,3.578,0v-6.646H25.613z"/>
-				</svg>
-			</a>
-
-			<a class="share-reveal-twitter" href="http://twitter.com/share?url=http%3A%2F%2Frevealjs.com&text=reveal.js%20-%20The%20HTML%20presentation%20framework&via=revealjs&related=revealjs">
-				<svg viewbox="0 0 2000 1625.36" width="20" height="20" version="1.1" xmlns="http://www.w3.org/2000/svg">
-					<path d="m 1999.9999,192.4 c -73.58,32.64 -152.67,54.69 -235.66,64.61 84.7,-50.78 149.77,-131.19 180.41,-227.01 -79.29,47.03 -167.1,81.17 -260.57,99.57 C 1609.3399,49.82 1502.6999,0 1384.6799,0 c -226.6,0 -410.328,183.71 -410.328,410.31 0,32.16 3.628,63.48 10.625,93.51 -341.016,-17.11 -643.368,-180.47 -845.739,-428.72 -35.324,60.6 -55.5583,131.09 -55.5583,206.29 0,142.36 72.4373,267.95 182.5433,341.53 -67.262,-2.13 -130.535,-20.59 -185.8519,-51.32 -0.039,1.71 -0.039,3.42 -0.039,5.16 0,198.803 141.441,364.635 329.145,402.342 -34.426,9.375 -70.676,14.395 -108.098,14.395 -26.441,0 -52.145,-2.578 -77.203,-7.364 52.215,163.008 203.75,281.649 383.304,284.946 -140.429,110.062 -317.351,175.66 -509.5972,175.66 -33.1211,0 -65.7851,-1.949 -97.8828,-5.738 181.586,116.4176 397.27,184.359 628.988,184.359 754.732,0 1167.462,-625.238 1167.462,-1167.47 0,-17.79 -0.41,-35.48 -1.2,-53.08 80.1799,-57.86 149.7399,-130.12 204.7499,-212.41" style="fill:#ffffff"/>
-				</svg>
-			</a>
-		</div>
-
-		<style>
-			/* Social sharing */
-			.share-reveal a {
-				display: inline-block;
-				height: 34px;
-				line-height: 32px;
-				padding: 0 10px;
-				color: #fff;
-				font-family: Helvetica, sans-serif;
-				text-decoration: none;
-				font-weight: bold;
-				font-size: 12px;
-				vertical-align: top;
-				text-transform: uppercase;
-				box-sizing: border-box;
-			}
-
-			.share-reveal .share-reveal-editor {
-				line-height: 30px;
-			}
-
-			.share-reveal svg {
-				vertical-align: middle;
-			}
-
-			.share-reveal a + a {
-				margin-left: 10px;
-			}
-
-			.share-reveal-editor {
-				border: 2px solid #fff;
-			}
-
-			.share-reveal-twitter,
-			.share-reveal-follow {
-				background-color: #00aced;
-			}
-
-			.share-reveal-facebook {
-				background-color: #4B71B8;
-			}
-
-			/* Advertising */
-			#carbonads {
-				width: 370px;
-				min-height: 100px;
-				font-size: 18px;
-				border: 1px solid rgba(255, 255, 255, 0.2);
-				padding: 10px;
-				margin: 40px auto 0 auto;
-				font-size: 16px;
-				z-index: 10;
-				text-align: left;
-			}
-
-			#carbonads .carbon-img img {
-				float: left;
-				margin: 0 10px 0 0;
-				border: 0;
-				box-shadow: none;
-			}
-
-			#carbonads .carbon-poweredby {
-				display: block;
-				margin-top: 10px;
-				color: #aaa;
-			}
-		</style>
-
-		<script>
-		var _gaq = [['_setAccount', 'UA-15240703-1'], ['_trackPageview']];
-		(function(d, t) {
-		var g = d.createElement(t),
-			s = d.getElementsByTagName(t)[0];
-		g.async = true;
-		g.src = ('https:' == location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		s.parentNode.insertBefore(g, s);
-		})(document, 'script');
-		</script>
-
-		<script>
-			[].slice.call( document.querySelectorAll( '.share-reveal-facebook, .share-reveal-twitter' ) ).forEach( function( element ) {
-				element.addEventListener( 'click', function( event ) {
-					event.preventDefault();
-					var width = 500, height = 300;
-					var winTop = window.screenY + (window.screen.height / 2) - (height / 2);
-					var winLeft = window.screenX + (window.screen.width / 2) - (width / 2);
-					window.open(this.href, 'shre', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + width + ',height=' + height);
-				} );
-			} );
-
-			if( !navigator.userAgent.match( /(iphone|android)/gi ) && !!document.querySelector ) {
-				document.querySelector( '.share-reveal' ).style.display = 'block';
-				document.querySelector( '.fork-reveal' ).style.display = 'block';
-			}
-		</script>
-
 	</body>
 </html>

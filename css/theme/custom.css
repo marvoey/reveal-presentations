@@ -1,0 +1,15 @@
+/**
+ * Custom styles
+ */
+
+.reveal span .fragment {
+  display: inline-block;
+}
+
+.reveal p.align-left,
+.reveal h2.align-left,
+.reveal h4.align-left{
+  text-align: left;
+}
+
+

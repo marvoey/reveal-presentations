@@ -151,7 +151,9 @@ body {
 .reveal .slides section .fragment.highlight-green,
 .reveal .slides section .fragment.highlight-current-green,
 .reveal .slides section .fragment.highlight-blue,
-.reveal .slides section .fragment.highlight-current-blue {
+.reveal .slides section .fragment.highlight-current-blue,
+.reveal .slides section .fragment.highlight-bold,
+.reveal .slides section .fragment.highlight-current-bold {
   opacity: 1;
   visibility: inherit; }
 
@@ -164,6 +166,9 @@ body {
 .reveal .slides section .fragment.highlight-blue.visible {
   color: #1b91ff; }
 
+.reveal .slides section .fragment.highlight-bold.visible {
+  font-weight: bold; }
+
 .reveal .slides section .fragment.highlight-current-red.current-fragment {
   color: #ff2c2d; }
 
@@ -172,6 +177,9 @@ body {
 
 .reveal .slides section .fragment.highlight-current-blue.current-fragment {
   color: #1b91ff; }
+
+.reveal .slides section .fragment.highlight-bold.current-fragment {
+  font-weight: bold; }
 
 /*********************************************
  * DEFAULT ELEMENT STYLES
