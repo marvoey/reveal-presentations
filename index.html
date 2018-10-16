@@ -601,14 +601,97 @@
 
 				<section data-background-color="#44B7E4">
 					<h3>Commit composer.lock, not vendor.</h3>
-					<p style="text-align: left">Composer has indicated that this is the best practice because it avoids the following problems:</p>
+					<p class="fragment" style="text-align: left">Composer has indicated that this is the best practice because it avoids the following problems:</p>
 					<ul>
-						<li>Large VCS repository size and diffs when you update code.</li>
-						<li>Duplication of the history of all your dependencies in your own VCS.</li>
-						<li>Adding dependencies installed via git to a git repo will show them as submodules.</li>
+						<li class="fragment">Large VCS repository size and diffs when you update code.</li>
+						<li class="fragment">Duplication of the history of all your dependencies in your own VCS.</li>
+						<li class="fragment">Adding dependencies installed via git to a git repo will show them as submodules.</li>
 					</ul>
 				</section>
 
+				<section style="text-align: left" data-background-color="#44B7E4">
+					<h3>If you commit composer.lock, not vendor.</h3>
+					<p class="fragment" style="text-align: left">Everyone gets the exact same
+						dependencies.</p>
+					<p class="fragment">But your repo is much lighter, and
+						you avoid git submodule hell.</p>
+				</section>
+
+				<section style="text-align: left" data-background-color="#44B7E4">
+					<h3>What?! No vendor directory?</h3>
+					<p class="fragment" style="text-align: left">Not having vendor assumes you have scripted deployments.</p>
+					<p class="fragment">But your repo is much lighter, and
+						you avoid git submodule hell.</p>
+					<blockquote class="fragment">Don't worry, you can still commit the vendor directory if you need to.</blockquote>
+				</section>
+
+				<section data-background-color="#44B7E4">
+					<h2>Drupal complicates things</h2>
+					<ul>
+						<li class="fragment">Drupal modules aren’t on Packagist</li>
+						<li class="fragment">Drupal doesn’t use Semantic Versioning. E.g., 8.x-2.0</li>
+						<li class="fragment">Drupal doesn’t install modules, themes, etc in vendor</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Composer templates for Drupal projects</h3>
+					<p style="text-align: left; font-color:#fff; font-size: .9em">
+						<a href="https://github.com/drupal-composer/drupal-project">https://github.com/drupal-composer/drupal-project</a><br/>
+						<a href="https://github.com/acquia/lightning-project">https://github.com/acquia/lightning-project</a><br/>
+						<a href="https://github.com/acquia/blt-project">https://github.com/acquia/blt-project</a><br/>
+						<a href="https://github.com/contentacms/contenta_jsonapi_project">https://github.com/contentacms/contenta_jsonapi_project</a><br/>
+					</p>
+				</section>
+
+				<section>
+					<pre><code class="console" data-trim contenteditable>
+						$ composer create-project
+						  drupal-composer/drupal-project:8.x-dev
+						  some-dir
+						  --stability dev
+						  --no-interaction</code></pre>
+				</section>
+
+				<section style="text-align: left">
+					<h2>8.x-1.1</h2>
+					<h2 class="fragment"><strike>8.x</strike>-1.1<span class="fragment highlight-green">.0</span></h2>
+					<h2 class="fragment">8.x-1.1 => 1.1.0</h2>
+				</section>
+
+				<section>
+					<table>
+						<thead>
+						<tr>
+							<th style="font-size: 0.70em">Drupal.org format</th>
+							<th style="font-size: 0.70em">Translated semver format</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td style="font-size: 0.66em">{core.x}-{major}.{minor}-{stability}</td>
+							<td style="font-size: 0.66em">{major}.{minor}.0-{stability}</td>
+						</tr>
+						<tr>
+							<td>8.x-3.4</td>
+							<td>3.4.0</td>
+						</tr>
+						<tr>
+							<td>8.x-2.10-rc2</td>
+							<td>2.10.0-rc2</td>
+						</tr>
+						<tr>
+							<td>8.x-1.0-alpha5</td>
+							<td>1.0.0-alpha5</td>
+						</tr>
+						<tr>
+							<td>7.x-1.x-dev</td>
+							<td>1.x-dev</td>
+						</tr>
+
+						</tbody>
+					</table>
+				</section>
 
 				<section style="text-align: left;">
 					<h1>THE END</h1>
